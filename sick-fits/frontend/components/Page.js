@@ -1,8 +1,10 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import Header from './Header';
 
 export default function Page({ children }) {
   return (
     <div>
+      <Header />
       <h2>I am the page component</h2>
       {children}
     </div>
@@ -10,10 +12,5 @@ export default function Page({ children }) {
 }
 
 Page.propTypes = {
-  // children: propTypes.arrayOf(propTypes.node)
-  // children: propTypes.oneOf([
-  //   propTypes.arrayOf(propTypes.node),
-  //   propTypes.node,
-  // ]),
-  children: propTypes.any,
+  children: PropTypes.any,
 };
