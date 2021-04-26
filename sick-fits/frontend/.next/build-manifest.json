@@ -29,20 +29,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/product/[id]": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/product/[id].js"
-    ],
     "/products": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/products.js"
-    ],
-    "/update": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/update.js"
     ]
   },
   "ampFirstPages": []

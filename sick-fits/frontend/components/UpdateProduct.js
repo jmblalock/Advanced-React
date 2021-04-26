@@ -56,11 +56,9 @@ export default function UpdateProduct({ id }) {
         const res = await updateProduct({
           variables: {
             id,
-            data: {
-              name: inputs.name,
-              description: inputs.description,
-              price: inputs.price,
-            },
+            name: inputs.name,
+            description: inputs.description,
+            price: inputs.price,
           },
         }).catch(console.error);
         console.log(res);
