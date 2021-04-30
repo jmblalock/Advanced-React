@@ -1,0 +1,62 @@
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/client';
+import Form from './styles/Form';
+import useForm from '../lib/useForm';
+import { CURRENT_USER_QUERY } from './User';
+import DisplayError from './DisplayError';
+
+const REQUEST_RESET_MUTATION = gql`
+  mutation REQUEST_RESET_MUTATION($email: String!) {
+    sendUserPasswordResetLink(email: $email) {
+      id
+      email
+      name
+    }
+  }
+`;
+
+export default function RequestReset() {
+  const { inputs, handleChange, resetForm } = useForm({
+    name: '',
+  });
+  const [signup, { data, loading, error }] = useMutation(
+    REQUEST_RESET_MUTATION,
+    {
+      variables: inputs,
+      // refetch the currenlty logged in user
+      // refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    }
+  );
+  async function handleSubmit(e) {
+    e.preventDefault(); // stop the form from submitting
+    console.log(inputs);
+    const res = await signup().catch(console.error);
+    console.log(res);
+    console.log({ data, loading, error });
+    resetForm();
+    // Send the email and password to the graphQLAPI
+  }
+  return (
+    <Form method="POST" onSubmit={handleSubmit}>
+      <h2>Forgot your password?</h2>
+      <DisplayError error={error} />
+      <fieldset>
+        {data?.createUser && (
+          <p>Signed up with {data.createUser.email} - Sign in</p>
+        )}
+        <label htmlFor="email">
+          Email
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email Address"
+            autoComplete="email"
+            value={inputs.email}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">Request reset</button>
+      </fieldset>
+    </Form>
+  );
+}
