@@ -8,16 +8,15 @@ import DisplayError from './DisplayError';
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
     sendUserPasswordResetLink(email: $email) {
-      id
-      email
-      name
+      code
+      message
     }
   }
 `;
 
 export default function RequestReset() {
   const { inputs, handleChange, resetForm } = useForm({
-    name: '',
+    email: '',
   });
   const [signup, { data, loading, error }] = useMutation(
     REQUEST_RESET_MUTATION,
