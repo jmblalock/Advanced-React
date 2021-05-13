@@ -48,7 +48,7 @@ export default function CartCount({ count }) {
           key={count}
           timeout={{ enter: 400, exit: 400 }}
         >
-          <Dot>{count}</Dot>;
+          <Dot>{count}</Dot>
         </CSSTransition>
       </TransitionGroup>
     </AnimationStyles>
